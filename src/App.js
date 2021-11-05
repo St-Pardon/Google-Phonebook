@@ -10,7 +10,7 @@ import {IconContext} from "react-icons"
 import { AiOutlinePlus } from "react-icons/ai";
 
 export default function App() {
-  const [showAddContact, setShowAddContact] = useState(false)
+  const [showAddContact, setShowAddContact] = useState(true)
   const [contact, setontact] = useState(contacts)
   
   return (
