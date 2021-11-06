@@ -32,7 +32,7 @@ const ContactDetails = ({ contact }) => {
               ? contact.lastName + ' ' + contact.firstName
               : contact.fileAs}
           </h2>
-          {/* <p>{contact.company.companyName}</p> */}
+          <p>{contact.company.companyName}</p>
         </div>
         <div className="dial-icons">
           <div>
@@ -60,8 +60,8 @@ const ContactDetails = ({ contact }) => {
           </div>
           <div className="numbers-display">
             <div>
-              {/* <p>{contact.phone.phoneNo}</p>
-              <p>{contact.phone.label}</p> */}
+              <p>{contact.phone.phoneNo}</p>
+              <p>{contact.phone.label}</p>
             </div>
             <div className="dail-options-icon">
               <div>
@@ -73,26 +73,28 @@ const ContactDetails = ({ contact }) => {
             </div>
           </div>
         </div>
-        <div className="other-details">
-          <h5>About Rosemary</h5>
+        {contact.company.companyName === "" ? "":<div className="other-details">
+          <h5>About {contact.firstName}</h5>
           <div className="other-info-container">
             <div className="other-info">
               <div className="other-info-icon">
                 <BsBuilding />
               </div>
-              <div>{/* <p>{contact.company.companyName}</p> */}</div>
+              <div>
+                <p>{contact.company.companyName}</p>
+              </div>
             </div>
             <div className="other-info">
               <div className="other-info-icon">
                 <IoMdCalendar />
               </div>
               <div>
-                {/* <p>{contact.date.title}</p>
-                <p>{contact.date.label}</p> */}
+                <p>{contact.date.title}</p>
+                <p>{contact.date.label}</p>
               </div>
             </div>
           </div>
-        </div>
+        </div>}
       </div>
     </div>
   );
