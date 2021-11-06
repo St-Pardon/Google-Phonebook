@@ -1,28 +1,38 @@
 import React from "react";
 
-const Inputs = ({prop}) => {
+const Inputs = ({placeholder, id, value, onChange}) => {
   return (
-    <fieldset>
-      <legend id={prop.id}></legend>
-      <input type="text" id={"input-" + prop.id} placeholder={prop.placeholder} 
+    <fieldset id={"fieldset"+id}>
+      <legend id={id}></legend>
+      <input 
+        type="text" 
+        id={"input-" + id}
+        value={value} 
+        onChange={onChange}
+        placeholder={placeholder} 
         onFocus ={
           ()=>{
-            let id = document.getElementById(prop.id);
-            let id2 = document.getElementById(`input-${prop.id}`);
-            id.innerText = prop.placeholder
-            id2.placeholder = ""
-            id2.padding = "0 5px"
+            let legendId = document.getElementById(id);
+            let fieldSet = document.getElementById("fieldset"+id);
+            let inputId = document.getElementById(`input-${id}`);
+            legendId.innerText = placeholder
+            inputId.placeholder = ""
+            legendId.setAttribute("style", "color: blue")
+            fieldSet.setAttribute("style", "border-color: blue")
           }
         }
         onBlur ={
           (e)=>{
-            let id = document.getElementById(prop.id);
-            let id2 = document.getElementById(`input-${prop.id}`);
+            let legendId = document.getElementById(id);
+            let inputId = document.getElementById(`input-${id}`);
+            let fieldSet = document.getElementById("fieldset"+id);
             if (e.target.value === ""){
-              id.innerText = ""
-              id2.placeholder = prop.placeholder
-              id2.padding = "0"
+              legendId.innerText = ""
+              inputId.placeholder = placeholder
+              inputId.padding = "0"
             }
+            legendId.setAttribute("style", "color: unset")
+            fieldSet.setAttribute("style", "border-color: unset")
           }
         }
       />

@@ -12,17 +12,21 @@ import { AiOutlinePlus } from "react-icons/ai";
 export default function App() {
   const [showAddContact, setShowAddContact] = useState(true)
   const [contact, setontact] = useState(contacts)
+
+  const addContact= (contact)=>{
+    console.log(contact)
+  }
   
   return (
     <Router>
       <div className="container">
         {!showAddContact && <DisplayContact contact={contact}/>}
-        <IconContext.Provider value={{ style: {fontSize: '25px', color: "white"}}}>
+        <IconContext.Provider value={{ style: {fontSize: '25px', style: "color: white"}}}>
           <button id="addBtn" className="add-btn" onClick={()=>{setShowAddContact(!showAddContact); console.log("clickedd")}}>
             <AiOutlinePlus />
           </button>
         </IconContext.Provider>
-        {showAddContact && <AddContact /> }
+        {showAddContact && <AddContact addContact={addContact} /> }
         {/* <Route path="/" exact/>
         <Route path="/" exact/> */}
         {/* <ContactDetails /> */}

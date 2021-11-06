@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Inputs from "../component/Inputs"
 import {IconContext} from "react-icons"
 import {  AiOutlineMail, AiOutlineDown } from "react-icons/ai";
@@ -8,7 +8,17 @@ import { MdOutlineLocalPhone, MdOutlineAddAPhoto, MdOutlineLink, MdOutlineGroupW
 import { RiMapPin2Line } from "react-icons/ri";
 import { IoMdCalendar } from "react-icons/io";
 
-const AddContact = () => {
+const AddContact = ({addContact}) => {
+  const [firstName, setFirstName] = useState("")
+  const [lastName, setLastName] = useState("")
+  
+  
+  // const addText = (e)=>{
+  //   setFirstName(e.target.value)
+  // }
+  
+  
+  
   return(
     <form action="" id="add-contact">
 
@@ -34,33 +44,58 @@ const AddContact = () => {
             <FaRegUser />
           </label>
           <div className="right-half">
-              <div>
-                {
-                  firstHalfs.map(
-                    (val)=>{
-                      return (
-                        <Inputs 
-                          prop={val}
-                        />
-                      )
-                    }
-                  ) 
-                }
-              </div>
-              <div className='additional-input'>
-                {
-                  secondHalfs.map(
-                    (val)=>{
-                      return (
-                        <Inputs 
-                          prop={val}
-                        />
-                      )
-                    }
-                  ) 
-                }
-              </div>
+            <div>
+              <Inputs
+                // value={firstName} 
+                placeholder="Name prefix"
+                id="Name-prefix"
+                />
+              <Inputs
+                onChange = {(e)=>setFirstName(e.target.value)} 
+                value={firstName}
+                placeholder="First Name"
+                id="First-name"
+                />
+              <Inputs
+                // value={firstName} 
+                placeholder="Middle name"
+                id="Middle-name"
+                />
+              <Inputs
+                // value={firstName} 
+                onChange = {(e)=>setLastName(e.target.value)} 
+                placeholder="Last name"
+                id="Last-name"
+              />
+              <Inputs
+                // value={firstName} 
+                placeholder="Name suffix"
+                id="Name-suffix"
+              />
+            </div>          
+            <div className='additional-input'>
+              <Inputs 
+                placeholder="Phonetic first name"
+                id="Phonetic-first-name"
+              />
+              <Inputs 
+                placeholder="Phonetic middle name"
+                id="Phonetic-middle-name"
+              />
+              <Inputs 
+                placeholder="Phonetic last name"
+                id="Phonetic-last-name"
+              />
+              <Inputs 
+                placeholder="Nickname"
+                id="Nickname"
+              />
+              <Inputs 
+                placeholder="File as"
+                id="File-as"
+              />
             </div>
+          </div>
           <div id='more-name-option'>
             <AiOutlineDown />
           </div>
@@ -73,17 +108,18 @@ const AddContact = () => {
           <BsBuilding />
         </label>
         <div className="right-half">
-          {
-            company.map(
-              (val)=>{
-                return (
-                  <Inputs 
-                    prop={val}
-                  />
-                )
-              }
-            ) 
-          }
+          <Inputs 
+            placeholder = "Company"
+            id = "Company"
+          />
+          <Inputs 
+            placeholder = "Department"
+            id = "Department"
+          />
+          <Inputs 
+            placeholder = "Title"
+            id = "Title"
+          />
         </div>
       </div>
 
@@ -94,7 +130,8 @@ const AddContact = () => {
         </label>
         <div className="right-half">
           <Inputs 
-            prop={{placeholder:"Phone", id:"Phone"}}
+            placeholder = "Phone"
+            id = "Phone"
           />
 
           <fieldset className="group-select-fieldset">
@@ -119,10 +156,12 @@ const AddContact = () => {
       <div className="form-input">
         <label htmlFor="email" className="label-icon"><AiOutlineMail /></label>
         <div className="right-half">
-        <Inputs 
-            prop={{placeholder:"Email", id:"Email"}}
+          <Inputs 
+            placeholder="Email"
+            id="Email"
           />
-          <fieldset className="group-select-fieldset">
+    
+       <fieldset className="group-select-fieldset">
             <legend>Label</legend>
             <select name="" id="email-type">
               <option value="No Label">No Label</option>
@@ -139,8 +178,8 @@ const AddContact = () => {
       <div className="form-input">
         <label htmlFor="address" className="label-icon"><RiMapPin2Line /></label>
         <div className="right-half">
-        <Inputs 
-            prop={{placeholder:"Address", id:"Address"}}
+          <Inputs 
+            placeholder="Address" id="Address"
           />
           <fieldset className="group-select-fieldset">
             <legend>Label</legend>
@@ -159,8 +198,8 @@ const AddContact = () => {
       <div className="form-input">
         <label htmlFor="phone" className="label-icon"><MdOutlineLink /></label>
         <div className="right-half">
-        <Inputs 
-            prop={{placeholder:"Website", id:"Website"}}
+          <Inputs 
+            placeholder="Website" id="Website"
           />
         </div>
       </div>
@@ -169,8 +208,8 @@ const AddContact = () => {
       <div className="form-input">
         <label htmlFor="significant-date" className="label-icon" ><IoMdCalendar /></label>
         <div className="right-half">
-        <Inputs 
-            prop={{placeholder:"Date", id:"Date"}}
+          <Inputs 
+            placeholder="Date" id="Date"
           />
 
         <fieldset className="group-select-fieldset">
@@ -190,8 +229,8 @@ const AddContact = () => {
       <div className="form-input">
         <label htmlFor="relationship" className="label-icon"><MdOutlineGroupWork /></label>
         <div className="right-half">
-        <Inputs 
-            prop={{placeholder:"Relationship", id:"Relationship"}}
+          <Inputs 
+            placeholder="Relationship" id="Relationship"
           />
           <fieldset className="group-select-fieldset">
             <legend>Label</legend>
@@ -233,61 +272,3 @@ const addPhoto = {
     transform: "scaleX(-1)"
   }
 }
-const firstHalfs = [
-  {
-    placeholder: "Name prefix",
-    id: "Name-prefix",
-  },
-  {
-    placeholder: "First name",
-    id: "First-name",
-  },
-  {
-    placeholder: "Middle name",
-    id: "Middle-name",
-  },
-  {
-    placeholder: "Last name",
-    id: "Last-name",
-  },
-  {
-    placeholder: "Name suffix",
-    id: "Name-suffix",
-  },
-]
-const secondHalfs =[
-  {
-    placeholder: "Phonetic first name",
-    id: "Phonetic-first-name",
-  },
-  {
-    placeholder: "Phonetic middle name",
-    id: "Phonetic-middle-name",
-  },
-  {
-    placeholder: "Phonetic last name",
-    id: "Phonetic-last-name",
-  },
-  {
-    placeholder: "Nickname",
-    id: "Nickname",
-  },
-  {
-    placeholder: "File as",
-    id: "File-as",
-  },
-]
-const company =[
-  {
-    placeholder: "Company",
-    id: "Company",
-  },
-  {
-    placeholder: "Department",
-    id: "Department",
-  },
-  {
-    placeholder: "Title",
-    id: "Title",
-  },
-]
