@@ -6,8 +6,6 @@ const DisplayContact = ({contact})=> {
     <div className="names-container">
       { contact.length === 0 ? <div className="no-contact">No contacts</div> :
         contact.sort((a, b)=> {
-          // let nameA = a.fileAs.toUpperCase() ; // ignore upper and lowercase
-          // let nameB = b.fileAs.toUpperCase(); // ignore upper and lowercase
           let nameA = a.fileAs === "" ? a.lastName :a.fileAs.toUpperCase() ; // ignore upper and lowercase
           let nameB = b.fileAs === "" ? b.lastName :b.fileAs.toUpperCase(); // ignore upper and lowercase
           if (nameA < nameB) {

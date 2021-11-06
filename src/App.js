@@ -17,7 +17,6 @@ export default function App() {
     const id = Math.floor(Math.random() * 1000) + 1;
     const newContact = { id, ...task };
     setContact([...contact, newContact])
-    console.log(task)
   }
   
   return (
@@ -25,7 +24,7 @@ export default function App() {
       <div className="container">
         {!showAddContact && <DisplayContact contact={contact}/>}
         <IconContext.Provider value={{ style: {fontSize: '25px', style: "color: white"}}}>
-          <button id="addBtn" className="add-btn" onClick={()=>{setShowAddContact(!showAddContact); console.log("clickedd")}}>
+          <button id="addBtn" className="add-btn" onClick={()=>{setShowAddContact(!showAddContact);}}>
             <AiOutlinePlus />
           </button>
         </IconContext.Provider>
