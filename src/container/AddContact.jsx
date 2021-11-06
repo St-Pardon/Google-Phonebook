@@ -9,21 +9,91 @@ import { RiMapPin2Line } from "react-icons/ri";
 import { IoMdCalendar } from "react-icons/io";
 
 const AddContact = ({addContact}) => {
+  const [namePrefix, setNamePrefix] = useState("")
   const [firstName, setFirstName] = useState("")
+  const [middleName, setMiddleName] = useState("")
   const [lastName, setLastName] = useState("")
+  const [nameSuffix, setNameSuffix] = useState("")
+  const [phoneticFirstName, setPhoneticFirstName] = useState("")
+  const [phoneticMiddleName, setPhoneticMiddleName] = useState("")
+  const [phoneticLastName, setPhoneticLastName] = useState("")
+  const [img, setImg] = useState()
+  const [nickname, setNickname] = useState("")
   const [fileAs, setFileAs] = useState("")
-  
-  
-  // const addText = (e)=>{
-  //   setFirstName(e.target.value)
-  // }
+  const [company, setCompany] = useState("")
+  const [department, setDepartment] = useState("")
+  const [title, setTitle] = useState("")
+  const [phone, setPhone] = useState("")
+  const [phoneLabel, setPhoneLabel] = useState("Mobile")
+  const [email, setEmail] = useState("")
+  const [emailLabel, setEmailLabel] = useState("Home")
+  const [address, setAddress] = useState("")
+  const [addressLabel, setAddressLabel] = useState("Home")
+  const [website, setWebsite] = useState("")
+  const [date, setDate] = useState("")
+  const [dateLabel, setDateLabel] = useState("Birthday")
+  const [relationship, setRelationship] = useState("")
+  const [relationshipLabel, setRelationshipLabel] = useState("Assistant")
   
   const onSubmit = e => {
     e.preventDefault();
-    addContact({firstName, lastName, fileAs})
-
-    setFirstName("")
-    setLastName("")
+    addContact(
+      {
+        
+        namePrefix,
+        firstName,
+        middleName, 
+        lastName, 
+        nameSuffix,
+        phoneticFirstName,
+        phoneticMiddleName,
+        phoneticLastName,
+        nickname,
+        fileAs, 
+        company,
+        department,
+        title,
+        phone:{
+          phoneNo: phone,
+          label: phoneLabel
+        },
+        email:{
+          address: email, 
+          label: emailLabel
+        },
+        address:{
+          name: address,
+          label: addressLabel
+        },
+        website,
+        date:{
+          title: date,
+          label: dateLabel
+        },
+        relationship:{
+          title:relationship,
+          label:relationshipLabel
+        }
+      }
+    )
+    
+    setImg()
+    setNickname("")
+    setFileAs("")
+    setCompany("")
+    setDepartment("")
+    setTitle("")
+    setPhone("")
+    setPhoneLabel("Mobile")
+    setEmail("")
+    setEmailLabel("Home")
+    setAddress("")
+    setAddressLabel("Home")
+    setWebsite("")
+    setDate("")
+    setDateLabel("Birthday")
+    setRelationship("")
+    setRelationshipLabel("Assistant")
   }
   
   return(
@@ -35,6 +105,8 @@ const AddContact = ({addContact}) => {
           <label htmlFor="image" className="img-lab">
             <MdOutlineAddAPhoto />
             <input 
+              value={img}
+              onChange = {(e)=>setImg(e.target.value)} 
               type="file" 
               name="image" 
               className="img-input" 
@@ -53,18 +125,20 @@ const AddContact = ({addContact}) => {
           <div className="right-half">
             <div>
               <Inputs
-                // value={firstName} 
+                value={namePrefix} 
+                onChange = {(e)=>setNamePrefix(e.target.value)} 
                 placeholder="Name prefix"
                 id="Name-prefix"
                 />
               <Inputs
-                onChange = {(e)=>setFirstName(e.target.value)} 
                 value={firstName}
+                onChange = {(e)=>setFirstName(e.target.value)} 
                 placeholder="First name"
                 id="First-name"
                 />
               <Inputs
-                // value={firstName} 
+                value={middleName} 
+                onChange = {(e)=>setMiddleName(e.target.value)} 
                 placeholder="Middle name"
                 id="Middle-name"
                 />
@@ -75,34 +149,43 @@ const AddContact = ({addContact}) => {
                 id="Last-name"
                 />
               <Inputs
-                // value={firstName} 
+                onChange = {(e)=>setNameSuffix(e.target.value)} 
+                value={nameSuffix} 
                 placeholder="Name suffix"
                 id="Name-suffix"
                 />
             </div>          
             <div className='additional-input'>
               <Inputs 
+                value={phoneticFirstName}
+                onChange = {(e)=>setPhoneticFirstName(e.target.value)} 
                 placeholder="Phonetic first name"
                 id="Phonetic-first-name"
-              />
+                />
               <Inputs 
+                value={phoneticMiddleName}
+                onChange = {(e)=>setPhoneticMiddleName(e.target.value)} 
                 placeholder="Phonetic middle name"
                 id="Phonetic-middle-name"
                 />
               <Inputs 
+                value={phoneticLastName}
+                onChange = {(e)=>setPhoneticLastName(e.target.value)} 
                 placeholder="Phonetic last name"
                 id="Phonetic-last-name"
                 />
               <Inputs 
+                value={nickname}
+                onChange = {(e)=>setNickname(e.target.value)} 
                 placeholder="Nickname"
                 id="Nickname"
                 />
               <Inputs 
-                value={fileAs === "" ? lastName+' '+firstName: fileAs}
+                value={fileAs}
                 onChange = {(e)=>setFileAs(e.target.value)} 
                 placeholder="File as"
                 id="File-as"
-              />
+                />
             </div>
           </div>
           <div id='more-name-option'>
@@ -118,17 +201,23 @@ const AddContact = ({addContact}) => {
         </label>
         <div className="right-half">
           <Inputs 
+            value={company}
+            onChange = {(e)=>setCompany(e.target.value)} 
             placeholder = "Company"
             id = "Company"
-          />
+            />
           <Inputs 
+            value={department}
+            onChange = {(e)=>setDepartment(e.target.value)} 
             placeholder = "Department"
             id = "Department"
-          />
+            />
           <Inputs 
+            value={title}
+            onChange = {(e)=>setTitle(e.target.value)} 
             placeholder = "Title"
             id = "Title"
-          />
+            />
         </div>
       </div>
 
@@ -139,15 +228,17 @@ const AddContact = ({addContact}) => {
         </label>
         <div className="right-half">
           <Inputs 
+            value={phone}
+            onChange = {(e)=>setPhone(e.target.value)} 
             placeholder = "Phone"
             id = "Phone"
-          />
+            />
 
           <fieldset className="group-select-fieldset">
             <legend>Label</legend>
-            <select name="" id="phone-no-type">
+            <select name="" id="phone-no-type" value={phoneLabel} onChange = {(e)=>setPhoneLabel(e.target.value)} >
               <option value="No Label">No Label</option>
-              <option value="Mobile" selected>Mobile</option>
+              <option value="Mobile">Mobile</option>
               <option value="Work">Work</option>
               <option value="Home">Home</option>
               <option value="Main">Main</option>
@@ -166,15 +257,17 @@ const AddContact = ({addContact}) => {
         <label htmlFor="email" className="label-icon"><AiOutlineMail /></label>
         <div className="right-half">
           <Inputs 
+            value={email}
+            onChange = {(e)=>setEmail(e.target.value)} 
             placeholder="Email"
             id="Email"
           />
     
        <fieldset className="group-select-fieldset">
             <legend>Label</legend>
-            <select name="" id="email-type">
+            <select name="" id="email-type" value={emailLabel} onChange = {(e)=>setEmailLabel(e.target.value)}>
               <option value="No Label">No Label</option>
-              <option value="Home" selected>Home</option>
+              <option value="Home">Home</option>
               <option value="Work">Work</option>
               <option value="Other">Other</option>
               <option value="Custom">Custom</option>
@@ -188,13 +281,18 @@ const AddContact = ({addContact}) => {
         <label htmlFor="address" className="label-icon"><RiMapPin2Line /></label>
         <div className="right-half">
           <Inputs 
+            value={address}
+            onChange = {(e)=>setAddress(e.target.value)} 
             placeholder="Address" id="Address"
-          />
+            />
           <fieldset className="group-select-fieldset">
             <legend>Label</legend>
-            <select name="" id="address-type">
+            <select name="" id="address-type" 
+            value={addressLabel}
+            onChange = {(e)=>setAddressLabel(e.target.value)} 
+            >
               <option value="No Label">No Label</option>
-              <option value="Home" selected>Home</option>
+              <option value="Home">Home</option>
               <option value="Work">Work</option>
               <option value="Other">Other</option>
               <option value="Custom">Custom</option>
@@ -208,8 +306,10 @@ const AddContact = ({addContact}) => {
         <label htmlFor="phone" className="label-icon"><MdOutlineLink /></label>
         <div className="right-half">
           <Inputs 
-            placeholder="Website" id="Website"
-          />
+              value={website}
+              onChange = {(e)=>setWebsite(e.target.value)} 
+              placeholder="Website" id="Website"
+              />
         </div>
       </div>
 
@@ -218,14 +318,19 @@ const AddContact = ({addContact}) => {
         <label htmlFor="significant-date" className="label-icon" ><IoMdCalendar /></label>
         <div className="right-half">
           <Inputs 
-            placeholder="Date" id="Date"
+          value={date}
+          onChange = {(e)=>setDate(e.target.value)} 
+          placeholder="Date" id="Date"
           />
 
         <fieldset className="group-select-fieldset">
           <legend>Label</legend>
-          <select name="" id="significant-date-type">
+          <select name="" id="significant-date-type"
+          value={dateLabel}
+          onChange = {(e)=>setDateLabel(e.target.value)} 
+          >
             <option value="No Label">No Label</option>
-            <option value="Birthday" selected>Birthday</option>
+            <option value="Birthday">Birthday</option>
             <option value="Anniversary">Anniversary</option>
             <option value="Other">Other</option>
             <option value="Custom">Custom</option>
@@ -239,13 +344,18 @@ const AddContact = ({addContact}) => {
         <label htmlFor="relationship" className="label-icon"><MdOutlineGroupWork /></label>
         <div className="right-half">
           <Inputs 
-            placeholder="Relationship" id="Relationship"
+          value={relationship}
+          onChange = {(e)=>setRelationship(e.target.value)} 
+          placeholder="Relationship" id="Relationship"
           />
           <fieldset className="group-select-fieldset">
             <legend>Label</legend>
-            <select name="" id="relationship-type">
+            <select name="" id="relationship-type"
+              value={relationshipLabel}
+              onChange = {(e)=>setRelationshipLabel(e.target.value)} 
+            >
               <option value="No Label">No Label</option>
-              <option value="Assistant" selected>Assistant</option>
+              <option value="Assistant">Assistant</option>
               <option value="Brother">Brother</option>
               <option value="Child">Child</option>
               <option value="Domestic Partner">Domestic Partner</option>

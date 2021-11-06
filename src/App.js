@@ -17,6 +17,7 @@ export default function App() {
     const id = Math.floor(Math.random() * 1000) + 1;
     const newContact = { id, ...task };
     setContact([...contact, newContact])
+    console.log(task)
   }
   
   return (
@@ -45,37 +46,37 @@ const contacts = [
     firstName: "Akanimoh",
     lastName: "John",
     middlename: "",
-    // namePrefix: "",
-    // nameSuffix: "",
-    // phoneticFirstName: "",
-    // phoneticLastName: "",
-    // phoneticMiddlename: "",
-    // phone: {
-    //   phoneNo: "0812 383 7772",
-    //   label: "Mobile"
-    // },
-    // email: {
-    //   address: "",
-    //   label: ""
-    // },
-    // address: {
-    //   name: "",
-    //   label: ""
-    // },
-    // date: {
-    //   title: "",
-    //   label: ""
-    // },
-    // relationship: {
-    //   title: "",
-    //   label: ""
-    // },
-    // company: {
-    //   companyName: "",
-    //   department: "",
-    //   title: "",
-    // },
-    // website: ""
+    namePrefix: "",
+    nameSuffix: "",
+    phoneticFirstName: "",
+    phoneticLastName: "",
+    phoneticMiddlename: "",
+    phone: {
+      phoneNo: "0812 383 7772",
+      label: "Mobile"
+    },
+    email: {
+      address: "",
+      label: ""
+    },
+    address: {
+      name: "",
+      label: ""
+    },
+    date: {
+      title: "",
+      label: ""
+    },
+    relationship: {
+      title: "",
+      label: ""
+    },
+    company: {
+      companyName: "",
+      department: "",
+      title: "",
+    },
+    website: ""
   },
   {
     id: 2,
@@ -84,37 +85,36 @@ const contacts = [
     firstName: "Michael",
     lastName: "Issac",
     middlename: "",
-  //   namePrefix: "",
-  //   nameSuffix: "",
-  //   phoneticFirstName: "",
-  //   phoneticLastName: "",
-  //   phoneticMiddlename: "",
-  //   phone: {
-  //     phoneNo: "0803 248 8965",
-  //     label: "Mobile"
-  //   },
-  //   email: {
-  //     address: "",
-  //     label: ""
-  //   },
-  //   address: {
-  //     name: "",
-  //     label: ""
-  //   },
-  //   date: {
-  //     title: "05th, May 1995",
-  //     label: "Birthday"
-  //   },
-  //   relationship: {
-  //     title: "",
-  //     label: ""
-  //   },
-  //   company: {
-  //     companyName: "Mixbex Ent.",
-  //     department: "",
-  //     title: "",
-  //   },
-  //   website: ""
+    namePrefix: "",
+    nameSuffix: "",
+    phoneticFirstName: "",
+    phoneticLastName: "",
+    phoneticMiddlename: "",
+    phone: {
+      phoneNo: "0803 248 8965",
+      label: "Mobile"
+    },
+    email: {
+      address: "",
+      label: ""
+    },
+    address: {
+      name: "",
+      label: ""
+    },
+    date: {
+      title: "05th, May 1995",
+      label: "Birthday"
+    },
+    relationship: {
+      title: "",
+      label: ""
+    },
+    company: {
+      companyName: "Mixbex Ent.",
+      department: "",
+      title: "",
+    },
+    website: ""
   },
 ]
-console.log(contacts)
