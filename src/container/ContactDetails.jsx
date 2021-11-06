@@ -16,8 +16,8 @@ const ContactDetails = ({contact}) =>  {
       </div>
       <div className='details'>
         <div className="details-intro">
-          <h2 className="contact-name">{contact.fileAs}</h2>
-          <p>{contact.company.companyName}</p>
+          <h2 className="contact-name">{contact.fileAs === ""? contact.lastName +" "+contact.firstName: contact.fileAs}</h2>
+          {/* <p>{contact.company.companyName}</p> */}
         </div>
         <div className="dial-icons">
           <div>
@@ -37,8 +37,8 @@ const ContactDetails = ({contact}) =>  {
           <div className="dail-call-icon"><MdOutlineLocalPhone /></div>
           <div className="numbers-display">
             <div>
-              <p>{contact.phone.phoneNo}</p>
-              <p>{contact.phone.label}</p>
+              {/* <p>{contact.phone.phoneNo}</p>
+              <p>{contact.phone.label}</p> */}
             </div>
             <div className="dail-options-icon">
               <div><MdOutlineMessage /></div>
@@ -52,14 +52,14 @@ const ContactDetails = ({contact}) =>  {
             <div className='other-info'>
               <div className="other-info-icon"><BsBuilding /></div>
               <div>
-                <p>{contact.company.companyName}</p>
+                {/* <p>{contact.company.companyName}</p> */}
               </div>
             </div>
             <div className='other-info'>
               <div className="other-info-icon"><IoMdCalendar /></div>
               <div>
-                <p>{contact.date.title}</p>
-                <p>{contact.date.label}</p>
+                {/* <p>{contact.date.title}</p>
+                <p>{contact.date.label}</p> */}
               </div>
             </div>
           </div>  

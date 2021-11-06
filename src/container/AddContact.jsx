@@ -11,16 +11,23 @@ import { IoMdCalendar } from "react-icons/io";
 const AddContact = ({addContact}) => {
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
+  const [fileAs, setFileAs] = useState("")
   
   
   // const addText = (e)=>{
   //   setFirstName(e.target.value)
   // }
   
-  
+  const onSubmit = e => {
+    e.preventDefault();
+    addContact({firstName, lastName, fileAs})
+
+    setFirstName("")
+    setLastName("")
+  }
   
   return(
-    <form action="" id="add-contact">
+    <form onSubmit={onSubmit} id="add-contact">
 
       {/* add photo input */}
       <div className="image-input-div">
@@ -53,7 +60,7 @@ const AddContact = ({addContact}) => {
               <Inputs
                 onChange = {(e)=>setFirstName(e.target.value)} 
                 value={firstName}
-                placeholder="First Name"
+                placeholder="First name"
                 id="First-name"
                 />
               <Inputs
@@ -62,16 +69,16 @@ const AddContact = ({addContact}) => {
                 id="Middle-name"
                 />
               <Inputs
-                // value={firstName} 
+                value={lastName}
                 onChange = {(e)=>setLastName(e.target.value)} 
                 placeholder="Last name"
                 id="Last-name"
-              />
+                />
               <Inputs
                 // value={firstName} 
                 placeholder="Name suffix"
                 id="Name-suffix"
-              />
+                />
             </div>          
             <div className='additional-input'>
               <Inputs 
@@ -81,16 +88,18 @@ const AddContact = ({addContact}) => {
               <Inputs 
                 placeholder="Phonetic middle name"
                 id="Phonetic-middle-name"
-              />
+                />
               <Inputs 
                 placeholder="Phonetic last name"
                 id="Phonetic-last-name"
-              />
+                />
               <Inputs 
                 placeholder="Nickname"
                 id="Nickname"
-              />
+                />
               <Inputs 
+                value={fileAs === "" ? lastName+' '+firstName: fileAs}
+                onChange = {(e)=>setFileAs(e.target.value)} 
                 placeholder="File as"
                 id="File-as"
               />
@@ -255,6 +264,8 @@ const AddContact = ({addContact}) => {
           </fieldset>
         </div>
       </div>
+
+      <label htmlFor="save"><input id="save" type="submit" />Save</label>
     </form>
   )
 }
