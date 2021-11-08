@@ -22,7 +22,7 @@ const DisplayContact = ({contact, showDetails, changeView})=> {
               changeView("details")
               }} >
               <h2 className="thumbnail" style={{backgroundColor: thumbnail[i]}}>{val.fileAs === "" ? val.lastName[0]: val.fileAs[0]}</h2>
-              <h3 className="display-name">{val.fileAs === "" ? val.lastName +" "+val.firstName : val.fileAs}</h3>
+              <h3 className="display-name">{val.fileAs === "" ? `${val.lastName} ${val.middleName} ${val.firstName}` : val.fileAs}</h3>
             </div>
           )
         })
