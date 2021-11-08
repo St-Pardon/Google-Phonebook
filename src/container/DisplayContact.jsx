@@ -1,7 +1,7 @@
 import React from 'react';
-import ContactDetails from "./ContactDetails";
 
-const DisplayContact = ({contact})=> {
+
+const DisplayContact = ({contact, showDetails, changeView})=> {
   return(
     <div className="names-container">
       { contact.length === 0 ? <div className="no-contact">No contacts</div> :
@@ -15,14 +15,14 @@ const DisplayContact = ({contact})=> {
           }
           // names must be equal
           return 0;
-        }).map(val=> {
+        }).map((val, i)=> {
           return(
-            <div className="display-name-container">
-              <h2 className="thumbnail">{val.fileAs === "" ? val.lastName[0]: val.fileAs[0]}</h2>
+            <div className="display-name-container" key={i} onClick={()=>{
+              showDetails([val, thumbnail[i]]);
+              changeView("details")
+              }} >
+              <h2 className="thumbnail" style={{backgroundColor: thumbnail[i]}}>{val.fileAs === "" ? val.lastName[0]: val.fileAs[0]}</h2>
               <h3 className="display-name">{val.fileAs === "" ? val.lastName +" "+val.firstName : val.fileAs}</h3>
-              <ContactDetails 
-                contact={val}
-              />
             </div>
           )
         })
@@ -33,10 +33,13 @@ const DisplayContact = ({contact})=> {
 
 export default DisplayContact;
 
-// const contactName = [
-//   "James Akanimoh",
-//   "Isaac Michael", 
-//   "Ameh Godwin",
-//   "Chikwendu Ifeanyi",
-//   "Ruth Odili"
-// ]
+const thumbnail = [
+  "#B38CB4",
+  "#F42C04",
+  "#61A0AF",
+  "#5941A9",
+  "#FF570A",
+  "#420039",
+  "#12355B",
+  "#D72638"
+]

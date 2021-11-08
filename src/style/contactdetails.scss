@@ -1,7 +1,8 @@
 .contact-details{
-  // border: 1px solid red;
+
+  height: 90vh;
   
-  .avata{
+  .avarta{
     width: 100%;
     height: 300px;
     
@@ -10,7 +11,28 @@
       height: 100%;
     }
   }
+  .no-avarta{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    
+    p{
+      width: 40px;
+      padding: 8px 2px;
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 25px;
+    }
+  }
+  .brief-about{
+    display: flex;
+    align-items: center;
+  }
+
   .details{
+
     .details-intro{
       padding: 15px 20px;
       border-bottom: 1px solid rgb(211, 210, 210);
@@ -34,10 +56,14 @@
         }
       }
     }
-    .dial-numbers{
+    .contact-info{
+      display: flex;
+      flex-direction: column;
+      border-bottom: 1px solid rgb(211, 210, 210);
+      
+      .dial-numbers{
       display: flex;
       padding: 10px 0;
-      border-bottom: 1px solid rgb(211, 210, 210);
       
       .dail-call-icon{
         font-size: 20px;
@@ -45,6 +71,7 @@
       }
       
       .numbers-display{
+        border-bottom: 1px solid rgb(211, 210, 210);
         display: flex;
         justify-content: space-between;
         width: 100%;
@@ -58,7 +85,7 @@
           padding: 5px 10px;
         }
       }
-    }
+    }}
     .other-details{
       border-bottom: 1px solid rgb(211, 210, 210);
       // padding: 10px 15px;

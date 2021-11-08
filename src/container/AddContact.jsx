@@ -13,7 +13,7 @@ import {
 import { RiMapPin2Line } from 'react-icons/ri';
 import { IoMdCalendar } from 'react-icons/io';
 
-const AddContact = ({ addContact }) => {
+const AddContact = ({ addContact, changeView }) => {
   const [namePrefix, setNamePrefix] = useState('');
   const [firstName, setFirstName] = useState('');
   const [middleName, setMiddleName] = useState('');
@@ -42,72 +42,76 @@ const AddContact = ({ addContact }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    addContact({
-      namePrefix,
-      firstName,
-      middleName,
-      lastName,
-      nameSuffix,
-      phoneticFirstName,
-      phoneticMiddleName,
-      phoneticLastName,
-      nickname,
-      fileAs,
-      company: { 
-        companyName: company, 
-        department: department, 
-        title: title 
-      },
-      phone: {
-        phoneNo: phone,
-        label: phoneLabel,
-      },
-      email: {
-        address: email,
-        label: emailLabel,
-      },
-      address: {
-        name: address,
-        label: addressLabel,
-      },
-      website,
-      date: {
-        title: date,
-        label: dateLabel,
-      },
-      relationship: {
-        title: relationship,
-        label: relationshipLabel,
-      },
-    });
+    changeView("home")
+    if (firstName !== "" && middleName !== "" && lastName !== "" && phone !==""){
+      addContact({
+        img,
+        namePrefix,
+        firstName,
+        middleName,
+        lastName,
+        nameSuffix,
+        phoneticFirstName,
+        phoneticMiddleName,
+        phoneticLastName,
+        nickname,
+        fileAs,
+        company: { 
+          companyName: company, 
+          department: department, 
+          title: title 
+        },
+        phone: {
+          phoneNo: phone,
+          label: phoneLabel,
+        },
+        email: {
+          address: email,
+          label: emailLabel,
+        },
+        address: {
+          name: address,
+          label: addressLabel,
+        },
+        website,
+        date: {
+          title: date,
+          label: dateLabel,
+        },
+        relationship: {
+          title: relationship,
+          label: relationshipLabel,
+        },
+      });
 
-    setImg();
-    setNamePrefix('')
-    setFirstName('')
-    setMiddleName('')
-    setLastName('')
-    setNameSuffix('')
-    setPhoneticFirstName('')
-    setPhoneticMiddleName('')
-    setPhoneticLastName('')
-    setNickname('');
-    setFileAs('');
-    setCompany('');
-    setDepartment('');
-    setTitle('');
-    setPhone('');
-    setPhoneLabel('Mobile');
-    setEmail('');
-    setEmailLabel('Home');
-    setAddress('');
-    setAddressLabel('Home');
-    setWebsite('');
-    setDate('');
-    setDateLabel('Birthday');
-    setRelationship('');
-    setRelationshipLabel('Assistant');
-  };
-
+      setImg("");
+      setNamePrefix('')
+      setFirstName('')
+      setMiddleName('')
+      setLastName('')
+      setNameSuffix('')
+      setPhoneticFirstName('')
+      setPhoneticMiddleName('')
+      setPhoneticLastName('')
+      setNickname('');
+      setFileAs('');
+      setCompany('');
+      setDepartment('');
+      setTitle('');
+      setPhone('');
+      setPhoneLabel('Mobile');
+      setEmail('');
+      setEmailLabel('Home');
+      setAddress('');
+      setAddressLabel('Home');
+      setWebsite('');
+      setDate('');
+      setDateLabel('Birthday');
+      setRelationship('');
+      setRelationshipLabel('Assistant');
+    } else {console.log("didn't work")};
+    alert("saved")
+  }
   return (
     <form onSubmit={onSubmit} id="add-contact">
       {/* add photo input */}
@@ -121,8 +125,8 @@ const AddContact = ({ addContact }) => {
               type="file"
               name="image"
               className="img-input"
-              accept="image/png, image/jpeg"
-            />
+              accept="image/png, image/jpeg, image/svg"
+              />
           </label>
         </IconContext.Provider>
       </div>
@@ -130,9 +134,9 @@ const AddContact = ({ addContact }) => {
       {/* add name input */}
       <div className="username">
         <div className="form-input">
-          <label htmlFor="name" className="label-icon">
+          <div className="label-icon">
             <FaRegUser />
-          </label>
+          </div>
           <div className="right-half">
             <div>
               <Inputs
@@ -207,9 +211,9 @@ const AddContact = ({ addContact }) => {
 
       {/* add company input */}
       <div className="form-input">
-        <label htmlFor="phone" className="label-icon">
+        <div className="label-icon">
           <BsBuilding />
-        </label>
+        </div>
         <div className="right-half">
           <Inputs
             value={company}
@@ -234,9 +238,9 @@ const AddContact = ({ addContact }) => {
 
       {/* add phone input */}
       <div className="form-input">
-        <label htmlFor="phone" className="label-icon">
+        <div className="label-icon">
           <MdOutlineLocalPhone />
-        </label>
+        </div>
         <div className="right-half">
           <Inputs
             value={phone}
@@ -270,9 +274,9 @@ const AddContact = ({ addContact }) => {
 
       {/* add email input */}
       <div className="form-input">
-        <label htmlFor="email" className="label-icon">
+        <div className="label-icon">
           <AiOutlineMail />
-        </label>
+        </div>
         <div className="right-half">
           <Inputs
             value={email}
@@ -301,9 +305,9 @@ const AddContact = ({ addContact }) => {
 
       {/* add address input */}
       <div className="form-input">
-        <label htmlFor="address" className="label-icon">
+        <div className="label-icon">
           <RiMapPin2Line />
-        </label>
+        </div>
         <div className="right-half">
           <Inputs
             value={address}
@@ -331,9 +335,9 @@ const AddContact = ({ addContact }) => {
 
       {/* add website input */}
       <div className="form-input">
-        <label htmlFor="phone" className="label-icon">
+        <div className="label-icon">
           <MdOutlineLink />
-        </label>
+        </div>
         <div className="right-half">
           <Inputs
             value={website}
@@ -346,9 +350,9 @@ const AddContact = ({ addContact }) => {
 
       {/* add date input */}
       <div className="form-input">
-        <label htmlFor="significant-date" className="label-icon">
+        <div className="label-icon">
           <IoMdCalendar />
-        </label>
+        </div>
         <div className="right-half">
           <Inputs
             value={date}
@@ -377,9 +381,9 @@ const AddContact = ({ addContact }) => {
 
       {/* add relationship input */}
       <div className="form-input">
-        <label htmlFor="relationship" className="label-icon">
+        <div className="label-icon">
           <MdOutlineGroupWork />
-        </label>
+        </div>
         <div className="right-half">
           <Inputs
             value={relationship}
@@ -415,11 +419,11 @@ const AddContact = ({ addContact }) => {
           </fieldset>
         </div>
       </div>
-
+{/* 
       <label htmlFor="save">
         <input id="save" type="submit" />
         Save
-      </label>
+      </label> */}
     </form>
   );
 };
