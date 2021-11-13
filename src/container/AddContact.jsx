@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Inputs from '../component/Inputs';
 import { IconContext } from 'react-icons';
-import { AiOutlineMail, AiOutlineDown } from 'react-icons/ai';
+import { AiOutlineMail, AiOutlineDown, AiOutlineUp } from 'react-icons/ai';
 import { FaRegUser } from 'react-icons/fa';
 import { BsBuilding } from 'react-icons/bs';
 import {
@@ -39,6 +39,8 @@ const AddContact = ({ addContact, changeView }) => {
   const [dateLabel, setDateLabel] = useState('Birthday');
   const [relationship, setRelationship] = useState('');
   const [relationshipLabel, setRelationshipLabel] = useState('Assistant');
+  const [more, setMore] = useState(true);
+  const [moreName, setMoreName] = useState(true);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -112,8 +114,31 @@ const AddContact = ({ addContact, changeView }) => {
     } else {console.log("didn't work")};
     alert("saved")
   }
+  useEffect(()=>showMore(), [])
+  const showMore = (id) => {
+
+    if(id === "more-name-option"){
+      let classname = document.getElementsByClassName("more")
+      for (let i = 0; i < classname.length; i ++){
+        classname[i].style.display === "none" ? classname[i].setAttribute("style", "display: flex") : classname[i].setAttribute("style", "display: none")
+        setMoreName(!moreName)
+      }
+    } else {
+      let classname = document.querySelectorAll(".all")
+      setMore(!more)
+      for (let i = 0; i < classname.length; i ++){
+        if ( classname[i].style.display !== "none") {
+          classname[i].setAttribute("style", "display: none")
+          } else {
+            classname[i]==="all-name" ? classname[i].setAttribute("style", "display: block") : classname[i].setAttribute("style", "display: flex")
+          }
+        }
+      }
+    // }
+  }
   return (
     <form onSubmit={onSubmit} id="add-contact">
+
       {/* add photo input */}
       <div className="image-input-div">
         <IconContext.Provider value={addPhoto}>
@@ -139,7 +164,7 @@ const AddContact = ({ addContact, changeView }) => {
           </div>
           <div className="right-half">
             <div>
-              <Inputs
+              <Inputs classVal='more all'
                 value={namePrefix}
                 onChange={(e) => setNamePrefix(e.target.value)}
                 placeholder="Name prefix"
@@ -151,7 +176,7 @@ const AddContact = ({ addContact, changeView }) => {
                 placeholder="First name"
                 id="First-name"
               />
-              <Inputs
+              <Inputs classVal='more all'
                 value={middleName}
                 onChange={(e) => setMiddleName(e.target.value)}
                 placeholder="Middle name"
@@ -163,7 +188,7 @@ const AddContact = ({ addContact, changeView }) => {
                 placeholder="Last name"
                 id="Last-name"
               />
-              <Inputs
+              <Inputs classVal='more all'
                 onChange={(e) => setNameSuffix(e.target.value)}
                 value={nameSuffix}
                 placeholder="Name suffix"
@@ -172,30 +197,35 @@ const AddContact = ({ addContact, changeView }) => {
             </div>
             <div className="additional-input">
               <Inputs
+                classVal="all"
                 value={phoneticFirstName}
                 onChange={(e) => setPhoneticFirstName(e.target.value)}
                 placeholder="Phonetic first name"
                 id="Phonetic-first-name"
               />
               <Inputs
+                classVal="all"
                 value={phoneticMiddleName}
                 onChange={(e) => setPhoneticMiddleName(e.target.value)}
                 placeholder="Phonetic middle name"
                 id="Phonetic-middle-name"
               />
               <Inputs
+                classVal="all"
                 value={phoneticLastName}
                 onChange={(e) => setPhoneticLastName(e.target.value)}
                 placeholder="Phonetic last name"
                 id="Phonetic-last-name"
               />
               <Inputs
+                classVal="all"
                 value={nickname}
                 onChange={(e) => setNickname(e.target.value)}
                 placeholder="Nickname"
                 id="Nickname"
               />
               <Inputs
+                classVal="all"
                 value={fileAs}
                 onChange={(e) => setFileAs(e.target.value)}
                 placeholder="File as"
@@ -203,8 +233,8 @@ const AddContact = ({ addContact, changeView }) => {
               />
             </div>
           </div>
-          <div id="more-name-option">
-            <AiOutlineDown />
+          <div id="more-name-option" onClick={()=> showMore("more-name-option")}>
+           { moreName ? <AiOutlineDown />: <AiOutlineUp />}
           </div>
         </div>
       </div>
@@ -220,14 +250,16 @@ const AddContact = ({ addContact, changeView }) => {
             onChange={(e) => setCompany(e.target.value)}
             placeholder="Company"
             id="Company"
-          />
+            />
           <Inputs
+            classVal="all"
             value={department}
             onChange={(e) => setDepartment(e.target.value)}
             placeholder="Department"
             id="Department"
-          />
+            />
           <Inputs
+            classVal="all"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="Title"
@@ -304,7 +336,7 @@ const AddContact = ({ addContact, changeView }) => {
       </div>
 
       {/* add address input */}
-      <div className="form-input">
+      <div className="form-input all">
         <div className="label-icon">
           <RiMapPin2Line />
         </div>
@@ -334,7 +366,7 @@ const AddContact = ({ addContact, changeView }) => {
       </div>
 
       {/* add website input */}
-      <div className="form-input">
+      <div className="form-input all">
         <div className="label-icon">
           <MdOutlineLink />
         </div>
@@ -349,7 +381,7 @@ const AddContact = ({ addContact, changeView }) => {
       </div>
 
       {/* add date input */}
-      <div className="form-input">
+      <div className="form-input all">
         <div className="label-icon">
           <IoMdCalendar />
         </div>
@@ -380,7 +412,7 @@ const AddContact = ({ addContact, changeView }) => {
       </div>
 
       {/* add relationship input */}
-      <div className="form-input">
+      <div className="form-input all">
         <div className="label-icon">
           <MdOutlineGroupWork />
         </div>
@@ -419,11 +451,7 @@ const AddContact = ({ addContact, changeView }) => {
           </fieldset>
         </div>
       </div>
-{/* 
-      <label htmlFor="save">
-        <input id="save" type="submit" />
-        Save
-      </label> */}
+      <p className="all-details" onClick={()=>showMore()}>{!more ? "More fields": "Less fields"}</p>
     </form>
   );
 };

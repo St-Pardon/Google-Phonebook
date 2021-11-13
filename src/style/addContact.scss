@@ -1,7 +1,5 @@
 #add-contact{
   width: 100%;
-  // border: 1px solid red;
-  // row-gap: 20px;
   
   .image-input-div{
     position: relative;
@@ -50,7 +48,6 @@
     border-radius: 3px;
 
     legend{
-      // padding: 0 10px;
       margin: 0 0 0 8px;
       font-size: 14px;
     }
@@ -66,6 +63,7 @@
 
   .additional-input{
     margin: 15px 0 0 0;
+    flex-direction: column;
   }
   #more-name-option{
     position: absolute;
@@ -75,7 +73,6 @@
   .group-select-fieldset{
     width: 40%;
     height: 45px;
-    // margin-top: -5px;
 
     legend{
       margin: 0 0 0 10px;
@@ -91,5 +88,10 @@
       padding: 0 0 0 5px;
       background-color: unset;
     }
+  }
+  .all-details{
+    color: rgb(10, 10, 158);
+    margin: 0 0 20px 50px;
+    cursor: pointer;
   }
 }
